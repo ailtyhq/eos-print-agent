@@ -125,10 +125,15 @@ func install() error {
 		return err
 	}
 	exe, _ = filepath.EvalSymlinks(exe)
-	if err := service.Install(exe); err != nil {
+	installed, err := service.CopySelf(exe)
+	if err != nil {
+		return fmt.Errorf("no se pudo copiar el agente a %s: %w", service.BinPath(), err)
+	}
+	if err := service.Install(installed); err != nil {
 		return err
 	}
-	fmt.Println("Servicio instalado y en ejecución. Revisa el estado en EOS → Impresoras o con: eos-print-agent status")
+	fmt.Printf("Servicio instalado y en ejecución (%s). Ya puedes borrar el archivo descargado.\n", installed)
+	fmt.Println("Revisa el estado en EOS → Impresoras o con: eos-print-agent status")
 	return nil
 }
 

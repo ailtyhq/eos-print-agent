@@ -18,6 +18,12 @@ func plistPath() string {
 	return filepath.Join(home, "Library", "LaunchAgents", label+".plist")
 }
 
+// BinPath es donde queda el agente instalado (no en Descargas, que el usuario puede vaciar).
+func BinPath() string {
+	home, _ := os.UserHomeDir()
+	return filepath.Join(home, "Library", "Application Support", "EOS Print Agent", "eos-print-agent")
+}
+
 func domain() string { return "gui/" + strconv.Itoa(os.Getuid()) }
 
 func Install(exe string) error {

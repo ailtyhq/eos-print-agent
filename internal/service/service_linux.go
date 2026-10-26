@@ -15,6 +15,9 @@ const (
 	dataDir     = "/var/lib/eos-print-agent"
 )
 
+// BinPath es donde queda el agente instalado.
+func BinPath() string { return "/usr/local/bin/eos-print-agent" }
+
 // En Linux es un servicio de systemd con un usuario propio sin login, en el grupo `lp` (permiso mínimo para imprimir).
 // La configuración vive en /var/lib/eos-print-agent, legible solo por ese usuario.
 func Install(exe string) error {

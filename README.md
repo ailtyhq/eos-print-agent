@@ -18,5 +18,5 @@ Resultados que confirma a EOS: `printed` (la cola o la impresora aceptó los dat
 `rejected` (no se aceptó nada: EOS puede reintentar solo) y `ambiguous` (pudo imprimirse: EOS no lo reenvía solo).
 El token se guarda con permisos de solo dueño y nunca se escribe completo en el log. No se actualiza solo.
 
-Compatibilidad: protocolo 1 (backend EOS con la HU 20.8d). Releases: `./build-release.sh <versión>`, que publica
+Compatibilidad: protocolo 1 (backend EOS con la HU 20.8d). Releases en https://github.com/ailtyhq/eos-print-agent/releases: `./build-release.sh <versión>`, que genera
 `SHA256SUMS`. Los binarios aún no están firmados (deuda técnica): ver la guía de instalación en EOS.

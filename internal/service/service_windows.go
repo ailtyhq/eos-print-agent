@@ -4,7 +4,9 @@ package service
 
 import (
 	"fmt"
+	"os"
 	"os/exec"
+	"path/filepath"
 	"time"
 
 	"golang.org/x/sys/windows/svc"
@@ -14,6 +16,11 @@ import (
 )
 
 const name = "EOSPrintAgent"
+
+// BinPath es donde queda el agente instalado.
+func BinPath() string {
+	return filepath.Join(os.Getenv("ProgramFiles"), "EOS", "PrintAgent", "eos-print-agent.exe")
+}
 
 // En Windows es un servicio con la cuenta LocalService (permisos mínimos) y arranque automático. La carpeta de
 // configuración (ProgramData\EOS\PrintAgent) queda solo para SYSTEM, Administradores y LocalService.
