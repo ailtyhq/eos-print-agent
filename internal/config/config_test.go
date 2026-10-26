@@ -1,6 +1,7 @@
 package config
 
 import (
+	"net"
 	"os"
 	"path/filepath"
 	"runtime"
@@ -40,5 +41,12 @@ func TestNormalizeURLRequiresHTTPSExceptLocalhost(t *testing.T) {
 	}
 	if _, err := NormalizeURL("http://demo.example.com"); err == nil {
 		t.Fatal("http sin TLS fuera de localhost debe rechazarse")
+	}
+}
+
+func TestDeviceNameIsNeverAnIP(t *testing.T) {
+	name := DeviceName()
+	if name == "" || net.ParseIP(name) != nil {
+		t.Fatalf("nombre de equipo inválido: %q", name)
 	}
 }

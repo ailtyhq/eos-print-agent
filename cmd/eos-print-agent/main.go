@@ -75,8 +75,7 @@ func pair(args []string) error {
 	fs := flag.NewFlagSet("pair", flag.ExitOnError)
 	rawURL := fs.String("url", "", "dirección de EOS (https://tu-negocio...)")
 	code := fs.String("code", "", "código de vinculación")
-	host, _ := os.Hostname()
-	name := fs.String("name", host, "nombre del equipo en EOS")
+	name := fs.String("name", config.DeviceName(), "nombre del equipo en EOS")
 	_ = fs.Parse(args)
 	if *rawURL == "" || *code == "" {
 		return errors.New("faltan --url y --code")
