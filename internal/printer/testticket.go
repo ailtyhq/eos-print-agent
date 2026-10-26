@@ -13,7 +13,8 @@ func TestTicket(width int, escpos bool) []byte {
 	}
 	var b bytes.Buffer
 	if escpos {
-		b.Write([]byte{0x1b, '@', 0x1b, 't', 19, 0x1b, 'a', 1, 0x1b, 'E', 1})
+		// FS . apaga el modo chino de fábrica de muchas térmicas (si no, las tildes salen como caracteres chinos).
+		b.Write([]byte{0x1b, '@', 0x1c, '.', 0x1b, 't', 19, 0x1b, 'a', 1, 0x1b, 'E', 1})
 	}
 	b.WriteString("EOS - PRUEBA DE IMPRESION\n")
 	if escpos {
